@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:weatherapp/controller/weather_provider.dart';
-
 import '../widgets/additional_information.dart';
-
 import '../../model/weather_model.dart';
 import '../../service/weather_api_client.dart';
 import '../widgets/current_weather.dart';
 
 class HomePage extends StatefulWidget {
-   const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,26 +25,23 @@ TextEditingController weatherController= TextEditingController();
 
     Future<void> getData(String place)async{
       //let's try changing the city name
-      data =await client.getCurrentWeather(place);
+       data =await client.getCurrentWeather(place);
+       Provider.of<WeatherProvider>(context,listen: false).changeValue();
     }
   
  @override
   void initState() {
     super.initState();
     getData('Calicut');
-   // Provider.of<WeatherProvider>(context).changeValue();
+   
   }
-
   @override
   Widget build(BuildContext context) {
-    
-      
       return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.cyan,
-       
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
         title: const Text(
           "Weather",
@@ -57,7 +52,8 @@ TextEditingController weatherController= TextEditingController();
       body: Container(
         color: Colors.cyan,
         height: MediaQuery.of(context).size.height,
-        child: Consumer(
+        width:MediaQuery.of(context).size.width,
+        child: Consumer<WeatherProvider>(
           builder: (context, value, child) {
             return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,15 +61,15 @@ TextEditingController weatherController= TextEditingController();
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
-                  onFieldSubmitted: (String place) {
-                    getData(place);
+                  onFieldSubmitted: (String place){
+                  getData(place);
                   },
                   controller: weatherController,
                   cursorColor: Colors.black,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 19,
                     color: Colors.black,
-                    letterSpacing: 2,
+                    letterSpacing: 3,
                     fontWeight: FontWeight.bold,
                   ),
                   decoration: InputDecoration(
@@ -99,10 +95,10 @@ TextEditingController weatherController= TextEditingController();
                               },
                               icon: const Icon(Icons.cancel, color: Colors.red))
                           : null),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
+                      ),
+                    ),
+                 const SizedBox(
+                  height: 20,
               ),
               if (data != null)
                 currentWeather(
@@ -131,9 +127,9 @@ TextEditingController weatherController= TextEditingController();
               if (data != null)
                 additionalInformation("${data!.wind}", "${data!.humidity}",
                     "${data!.pressure}", "${data!.feels_like}"),
-            ],
-          );
-          },
+                ],
+               );
+            },
           
         ),
       ),
