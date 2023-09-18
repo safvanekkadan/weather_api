@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -92,6 +94,7 @@ TextEditingController weatherController= TextEditingController();
                           ? IconButton(
                               onPressed: () {
                                 weatherController.clear();
+                                
                               },
                               icon: const Icon(Icons.cancel, color: Colors.red))
                           : null),
