@@ -1,6 +1,3 @@
-
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -18,24 +15,16 @@ class HomePage extends StatefulWidget {
 }
  
 class _HomePageState extends State<HomePage> {
-     //call the api in the init state function
-   WeatherApiClient client =WeatherApiClient();
-
-  Weather?data;
-
+ 
 TextEditingController weatherController= TextEditingController();
 
-    Future<void> getData(String place)async{
-      //let's try changing the city name
-       data =await client.getCurrentWeather(place);
-       Provider.of<WeatherProvider>(context,listen: false).changeValue();
-    }
+ 
   
  @override
   void initState() {
     super.initState();
-    getData('Calicut');
-   
+    // getData('Calicut');
+    Provider.of<WeatherProvider>(context,listen: false).getData('calicut'); 
   }
   @override
   Widget build(BuildContext context) {
@@ -64,7 +53,7 @@ TextEditingController weatherController= TextEditingController();
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
                   onFieldSubmitted: (String place){
-                  getData(place);
+                  value. getData(place);
                   },
                   controller: weatherController,
                   cursorColor: Colors.black,
@@ -103,10 +92,10 @@ TextEditingController weatherController= TextEditingController();
                  const SizedBox(
                   height: 20,
               ),
-              if (data != null)
+              if (value.data != null)
                 currentWeather(
                   Icons.wb_sunny_rounded,
-                  "${data!.temp}°",
+                  "${value. data!.temp}°",
                   weatherController.text.isEmpty
                       ? 'Calicut'
                       : weatherController.text,
@@ -127,9 +116,9 @@ TextEditingController weatherController= TextEditingController();
                 height: 10.0,
               ),
               
-              if (data != null)
-                additionalInformation("${data!.wind}", "${data!.humidity}",
-                    "${data!.pressure}", "${data!.feels_like}"),
+              if (value.data != null)
+                additionalInformation("${value. data!.wind}", "${value. data!.humidity}",
+                    "${value. data!.pressure}", "${value. data!.feels_like}"),
                 ],
                );
             },

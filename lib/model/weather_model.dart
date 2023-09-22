@@ -14,7 +14,7 @@ class Weather{
     this.feels_like,
     this.pressure
   });
-   //parse JSON file
+
    Weather.fromJson(Map<String,dynamic>json){
     cityName=json["name"];
     temp=json["main"]["temp"];
