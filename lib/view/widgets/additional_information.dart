@@ -8,7 +8,10 @@ import 'package:flutter/material.dart';
    String wind,
    String humidity,
     String pressure,
-     String feels_like){
+     String feels_like,
+     String clouds,
+     String sunrise,
+     String sunset){
 
   return Container(
   width:  double.infinity,
@@ -33,6 +36,14 @@ import 'package:flutter/material.dart';
           Text("pressure",
           style: titleFont,
           ), 
+          SizedBox(  height: 10),
+          Text("sunrise",
+          style: titleFont,
+          ),
+          SizedBox(  height: 10),
+          Text("sunset",
+          style: titleFont,
+          ),
         ],
        ),
 
@@ -48,6 +59,14 @@ import 'package:flutter/material.dart';
           Text("$pressure",
           style: infoFont,
           ), 
+           SizedBox(  height: 10),
+          Text("$sunrise",
+          style: infoFont,
+          ),
+           SizedBox(  height: 10),
+          Text("$sunset",
+          style: infoFont,
+          ),  
         ],
         ),
          Column(
@@ -62,6 +81,10 @@ import 'package:flutter/material.dart';
           Text("feels_like",
           style: titleFont,
           ), 
+          SizedBox(  height: 10),
+          Text("clouds",
+          style: titleFont,
+          ),
          ],
        ),
          Column(
@@ -72,8 +95,12 @@ import 'package:flutter/material.dart';
               style:infoFont ),
             
           
-          SizedBox(  height: 10),
+          const SizedBox(height: 10),
           Text("$feels_like",
+          style: infoFont,
+          ), 
+          const SizedBox(height: 10),
+          Text("$clouds",
           style: infoFont,
           ), 
          ],

@@ -3,8 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:weatherapp/controller/weather_provider.dart';
 import '../widgets/additional_information.dart';
-import '../../model/weather_model.dart';
-import '../../service/weather_api_client.dart';
+
 import '../widgets/current_weather.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,15 +15,14 @@ class HomePage extends StatefulWidget {
  
 class _HomePageState extends State<HomePage> {
  
-TextEditingController weatherController= TextEditingController();
+
 
  
   
  @override
   void initState() {
     super.initState();
-    // getData('Calicut');
-    Provider.of<WeatherProvider>(context,listen: false).getData('calicut'); 
+    Provider.of<WeatherProvider>(context,listen: false).getData('Calicut'); 
   }
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,7 @@ TextEditingController weatherController= TextEditingController();
                   onFieldSubmitted: (String place){
                   value. getData(place);
                   },
-                  controller: weatherController,
+                  controller:value. weatherController,
                   cursorColor: Colors.black,
                   style: const TextStyle(
                     fontSize: 19,
@@ -79,10 +77,10 @@ TextEditingController weatherController= TextEditingController();
                           size: 30,
                         ),
                       ),
-                      suffixIcon: weatherController.text.isNotEmpty
+                      suffixIcon:value. weatherController.text.isNotEmpty
                           ? IconButton(
                               onPressed: () {
-                                weatherController.clear();
+                                value .weatherController.clear();
                                 
                               },
                               icon: const Icon(Icons.cancel, color: Colors.red))
@@ -96,9 +94,9 @@ TextEditingController weatherController= TextEditingController();
                 currentWeather(
                   Icons.wb_sunny_rounded,
                   "${value. data!.temp}°",
-                  weatherController.text.isEmpty
+                  value. weatherController.text.isEmpty
                       ? 'Calicut'
-                      : weatherController.text,
+                      : value . weatherController.text,
                 ),
               const SizedBox(
                 height: 60,
@@ -117,8 +115,15 @@ TextEditingController weatherController= TextEditingController();
               ),
               
               if (value.data != null)
-                additionalInformation("${value. data!.wind}", "${value. data!.humidity}",
-                    "${value. data!.pressure}", "${value. data!.feels_like}"),
+                additionalInformation(
+                  "${value. data!.wind}", 
+                  "${value. data!.humidity}",
+                  "${value. data!.pressure}", 
+                  "${value. data!.feels_like}",
+                  "${value. data!.clouds}",
+                  "${value. data!.sunrise}",
+                  "${value. data!.sunset}",
+                  ),
                 ],
                );
             },

@@ -4,10 +4,8 @@ import 'package:weatherapp/service/weather_api_client.dart';
 
 class WeatherProvider extends ChangeNotifier{
    bool isLoaded = false;
-
-  Weather?data;
-  
- 
+ Weather?data; 
+ TextEditingController weatherController= TextEditingController();
 
  Future<Weather?>getData(String place) async {
   
