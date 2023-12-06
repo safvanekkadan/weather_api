@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:provider/provider.dart';
 import 'package:weatherapp/controller/weather_provider.dart';
 import '../widgets/additional_information.dart';
@@ -28,18 +28,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
       return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.cyan,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-        title: const Text(
-          "Weather",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //  // backgroundColor: Colors.cyan,
+      //   leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+      //   title: const Text(
+      //     "Weather",
+      //     style: TextStyle(fontWeight: FontWeight.bold),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: Container(
-        color: Colors.cyan,
+        decoration: const BoxDecoration(
+          image: DecorationImage(fit: BoxFit.cover,
+            image: AssetImage(
+              "assets/backgroud.jpg",
+          ))
+        ),
+        
         height: MediaQuery.of(context).size.height,
         width:MediaQuery.of(context).size.width,
         child: Consumer<WeatherProvider>(
@@ -47,6 +53,13 @@ class _HomePageState extends State<HomePage> {
             return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 10),
+              const Text("WEATHER INFO",
+              style:TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight:FontWeight.bold
+              )),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
@@ -64,7 +77,8 @@ class _HomePageState extends State<HomePage> {
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(top: 18),
                       isDense: true,
-                      hintText: "Search",
+                      hintText: "Search",hintStyle:TextStyle(color: Colors.white),
+                    // fillColor: Colors.deepOrange,
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
@@ -122,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                   "${value. data!.feels_like}",
                   "${value. data!.clouds}",
                   "${value. data!.sunrise}",
-                  "${value. data!.sunset}",
+                   "${value. data!.sunset}"
                   ),
                 ],
                );

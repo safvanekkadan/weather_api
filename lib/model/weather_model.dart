@@ -1,3 +1,5 @@
+
+
 class Weather{
   String?cityName;
   double?temp;
@@ -8,6 +10,7 @@ class Weather{
   double?clouds;
   double? sunrise;
   double?sunset;
+
   Weather({
     this.cityName,
     this.temp,
@@ -17,7 +20,8 @@ class Weather{
     this.pressure,
     this.clouds,
     this.sunrise,
-    this.sunset
+    this.sunset,
+    
   });
 
    Weather.fromJson(Map<String,dynamic>json){
@@ -30,6 +34,7 @@ class Weather{
     clouds=json["clouds"]["all"];
     sunrise=json["sys"]["sunrise"];
     sunset=json["sys"]["sunset"];
+    
     
    }
    
